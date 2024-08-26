@@ -21,6 +21,7 @@ const cardStyle = (hover, colors) => ({
 const Portfolio = () => {
   const [activeCategory, setActiveCategory] = useState('All');
   const [hoveredItemId, setHoveredItemId] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
 
   // Define your colors
   const colors = {
@@ -44,10 +45,29 @@ const Portfolio = () => {
     { id: 6, category: 'Portfolio Building', icon: <FaBriefcase size={48} />, title: 'Portfolio Building' }
   ];
 
+  const itemsPerPage = 2;
+
   // Filter items based on the active category
   const filteredItems = activeCategory === 'All'
     ? items
     : items.filter(item => item.category === activeCategory);
+
+  // Calculate the total number of pages
+  const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
+
+  // Get the items for the current page
+  const paginatedItems = filteredItems.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
+  const handleNextPage = () => {
+    setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
+  };
+
+  const handlePrevPage = () => {
+    setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+  };
 
   return (
     <section style={{ padding: '1rem', '@media (min-width: 768px)': { padding: '2.5rem' }, '@media (min-width: 1024px)': { padding: '5rem' } }}>
@@ -60,7 +80,10 @@ const Portfolio = () => {
           {['All', 'Projects', 'Experience', 'Translation', 'Language Teaching', 'Portfolio Building'].map((category) => (
             <button
               key={category}
-              onClick={() => setActiveCategory(category)}
+              onClick={() => {
+                setActiveCategory(category);
+                setCurrentPage(1); // Reset to the first page when changing category
+              }}
               style={{
                 fontSize: '0.875rem',
                 color: colors.green,
@@ -80,8 +103,8 @@ const Portfolio = () => {
       </div>
 
       {/* Portfolio Grid */}
-      <div style={{ display: 'grid', gap: '1.5rem', gridTemplateColumns: 'repeat(1, 1fr)', '@media (min-width: 640px)': { gridTemplateColumns: 'repeat(2, 1fr)' }, '@media (min-width: 1024px)': { gridTemplateColumns: 'repeat(3, 1fr)' } }}>
-        {filteredItems.map(item => (
+      <div style={{ display: 'grid', gap: '1.5rem', gridTemplateColumns: 'repeat(1, 1fr)', '@media (min-width: 640px)': { gridTemplateColumns: 'repeat(2, 1fr)' } }}>
+        {paginatedItems.map(item => (
           <div
             key={item.id}
             style={cardStyle(hoveredItemId === item.id, colors)}
@@ -114,6 +137,43 @@ const Portfolio = () => {
             </div>
           </div>
         ))}
+      </div>
+
+      {/* Pagination Controls */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '1.5rem' }}>
+        <button
+          onClick={handlePrevPage}
+          disabled={currentPage === 1}
+          style={{
+            padding: '0.5rem 1rem',
+            backgroundColor: colors.green,
+            color: colors.white,
+            border: 'none',
+            borderRadius: '0.25rem',
+            cursor: 'pointer',
+            opacity: currentPage === 1 ? '0.5' : '1',
+          }}
+        >
+          Previous
+        </button>
+        <span style={{ alignSelf: 'center', color: colors.text }}>
+          Page {currentPage} of {totalPages}
+        </span>
+        <button
+          onClick={handleNextPage}
+          disabled={currentPage === totalPages}
+          style={{
+            padding: '0.5rem 1rem',
+            backgroundColor: colors.green,
+            color: colors.white,
+            border: 'none',
+            borderRadius: '0.25rem',
+            cursor: 'pointer',
+            opacity: currentPage === totalPages ? '0.5' : '1',
+          }}
+        >
+          Next
+        </button>
       </div>
     </section>
   );

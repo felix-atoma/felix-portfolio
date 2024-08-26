@@ -18,7 +18,7 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Here you can handle form submission, e.g., send data to an API
+    // Handle form submission
     setSubmitted(true);
     // Reset form
     setFormData({ firstName: '', lastName: '', email: '', phone: '', message: '' });
@@ -35,13 +35,13 @@ const Contact = () => {
   const containerStyle = {
     maxWidth: '1200px',
     margin: '0 auto',
-    backgroundColor: '#f9f9f9', // Light gray background for contrast
+    backgroundColor: '#f9f9f9', 
     boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
     borderRadius: '0.5rem',
     padding: '2rem',
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center', // Center align items
+    alignItems: 'center',
   };
 
   const headerStyle = {
@@ -59,7 +59,7 @@ const Contact = () => {
   const infoHeaderStyle = {
     fontSize: '1.5rem',
     fontWeight: '700',
-    color: '#96BB7C', // Light green color
+    color: '#96BB7C',
     marginBottom: '1.5rem',
   };
 
@@ -71,9 +71,9 @@ const Contact = () => {
 
   const iconStyle = {
     fontSize: '1.5rem',
-    color: '#FF6F00', // Orange color
+    color: '#FF6F00', 
     marginRight: '1rem',
-    cursor: 'pointer', // Change cursor to pointer
+    cursor: 'pointer',
   };
 
   const infoTextStyle = {
@@ -84,8 +84,8 @@ const Contact = () => {
     display: 'flex',
     flexDirection: 'column',
     gap: '1.5rem',
-    width: '100%', // Make form take full width
-    maxWidth: '500px', // Max width to center the form nicely
+    width: '100%',
+    maxWidth: '500px',
   };
 
   const inputStyle = {
@@ -97,7 +97,7 @@ const Contact = () => {
 
   const buttonStyle = {
     width: '100%',
-    backgroundColor: '#96BB7C', // Light green color
+    backgroundColor: '#96BB7C',
     color: '#ffffff',
     padding: '0.75rem',
     borderRadius: '0.5rem',
@@ -106,7 +106,24 @@ const Contact = () => {
   };
 
   const buttonHoverStyle = {
-    backgroundColor: '#85a76e', // Darker shade of light green
+    backgroundColor: '#85a76e',
+  };
+
+  const gridStyle = {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '3rem',
+    '@media (min-width: 768px)': {
+      flexDirection: 'row',
+    },
+  };
+
+  const contactInfoContainerStyle = {
+    flex: 1,
+  };
+
+  const formContainerStyle = {
+    flex: 1,
   };
 
   return (
@@ -114,9 +131,9 @@ const Contact = () => {
       <div style={containerStyle}>
         <h1 style={headerStyle}>Contact Me</h1>
 
-        <div style={{ display: 'grid', gap: '3rem', gridTemplateColumns: '1fr', '@media (min-width: 768px)': { gridTemplateColumns: '1fr 1fr' } }}>
+        <div style={gridStyle}>
           {/* Contact Information */}
-          <div style={contactInfoStyle}>
+          <div style={contactInfoContainerStyle}>
             <h2 style={infoHeaderStyle}>Contact Information</h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               <div style={infoItemStyle}>
@@ -132,7 +149,7 @@ const Contact = () => {
                 <p style={infoTextStyle}>+233 244173068</p>
               </div>
               <div style={infoItemStyle}>
-                <a href="https://wa.me/+233244173068" target="_blank" rel="noopener noreferrer" style={iconStyle}>
+                <a href="https://wa.me/233244173068" target="_blank" rel="noopener noreferrer" style={iconStyle}>
                   <FaWhatsapp />
                 </a>
                 <p style={infoTextStyle}>Send a WhatsApp message</p>
@@ -147,7 +164,7 @@ const Contact = () => {
           </div>
 
           {/* Contact Form */}
-          <div>
+          <div style={formContainerStyle}>
             <h2 style={infoHeaderStyle}>Get in Touch</h2>
             {submitted ? (
               <p style={{ color: '#4caf50', textAlign: 'center' }}>Thank you for your message! I'll get back to you soon.</p>

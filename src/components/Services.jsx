@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaDesktop, FaMobileAlt, FaLanguage, FaChalkboardTeacher, FaBriefcase } from 'react-icons/fa';
 
 const services = [
@@ -35,7 +35,11 @@ const services = [
 ];
 
 const Services = () => {
-  // Color scheme
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const itemsPerPage = 2;
+  const totalPages = Math.ceil(services.length / itemsPerPage);
+
   const colors = {
     lightGreen: '#96BB7C',
     orange: '#F7931E',
@@ -44,7 +48,6 @@ const Services = () => {
     darkText: '#000000',
   };
 
-  // Inline style objects
   const sectionStyle = {
     padding: '2.5rem 1.5rem',
     backgroundColor: colors.white,
@@ -63,9 +66,10 @@ const Services = () => {
   };
 
   const gridStyle = {
-    display: 'grid',
+    display: 'flex',
+    justifyContent: 'center',
     gap: '2.5rem',
-    gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))',
+    flexWrap: 'wrap',
   };
 
   const cardStyle = {
@@ -81,6 +85,10 @@ const Services = () => {
     backgroundColor: colors.white,
     transition: 'transform 0.3s ease',
     transform: 'scale(1)',
+    cursor: 'pointer',
+    height: '300px',
+    overflow: 'hidden',
+    width: '240px',
   };
 
   const iconStyle = {
@@ -91,13 +99,49 @@ const Services = () => {
   const titleStyle = {
     fontSize: '1.5rem',
     fontWeight: 'bold',
-    color: colors.orange,
+    color: 'transparent',
     marginBottom: '1rem',
+    transition: 'color 0.3s ease',
   };
 
   const descriptionStyle = {
     color: colors.grayText,
+    opacity: 0,
+    transition: 'opacity 0.3s ease',
   };
+
+  const handleMouseEnter = (e) => {
+    e.currentTarget.querySelector('h3').style.color = colors.orange;
+    e.currentTarget.querySelector('p').style.opacity = 1;
+  };
+
+  const handleMouseLeave = (e) => {
+    e.currentTarget.querySelector('h3').style.color = 'transparent';
+    e.currentTarget.querySelector('p').style.opacity = 0;
+  };
+
+  const handlePrevious = () => {
+    setCurrentPage((prevPage) => (prevPage === 1 ? totalPages : prevPage - 1));
+  };
+
+  const handleNext = () => {
+    setCurrentPage((prevPage) => (prevPage === totalPages ? 1 : prevPage + 1));
+  };
+
+  const buttonStyle = {
+    padding: '0.5rem 1rem',
+    margin: '0 0.5rem',
+    backgroundColor: colors.lightGreen,
+    color: colors.white,
+    border: 'none',
+    borderRadius: '0.25rem',
+    cursor: 'pointer',
+    fontSize: '1rem',
+    transition: 'background-color 0.3s ease',
+  };
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const selectedServices = services.slice(startIndex, startIndex + itemsPerPage);
 
   return (
     <section style={sectionStyle}>
@@ -109,12 +153,12 @@ const Services = () => {
       </div>
 
       <div style={gridStyle}>
-        {services.map(service => (
+        {selectedServices.map((service) => (
           <div
             key={service.id}
             style={cardStyle}
-            onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-            onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           >
             <div style={iconStyle}>{service.icon}</div>
             <h3 style={titleStyle}>{service.title}</h3>
@@ -122,8 +166,20 @@ const Services = () => {
           </div>
         ))}
       </div>
+
+      <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+        <button
+          onClick={handlePrevious}
+          style={{ ...buttonStyle, backgroundColor: colors.orange }}
+        >
+          Previous
+        </button>
+        <button onClick={handleNext} style={buttonStyle}>
+          Next
+        </button>
+      </div>
     </section>
   );
-}
+};
 
 export default Services;
