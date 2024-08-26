@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaWhatsapp } from 'react-icons/fa';
+import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaWhatsapp, FaGithub } from 'react-icons/fa';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -35,7 +35,7 @@ const Contact = () => {
   const containerStyle = {
     maxWidth: '1200px',
     margin: '0 auto',
-    backgroundColor: '#f9f9f9', 
+    backgroundColor: '#f9f9f9',
     boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
     borderRadius: '0.5rem',
     padding: '2rem',
@@ -149,7 +149,7 @@ const Contact = () => {
                 <p style={infoTextStyle}>+233 244173068</p>
               </div>
               <div style={infoItemStyle}>
-                <a href="https://wa.me/233244173068" target="_blank" rel="noopener noreferrer" style={iconStyle}>
+                <a href="https://wa.me/+233244173068" target="_blank" rel="noopener noreferrer" style={iconStyle}>
                   <FaWhatsapp />
                 </a>
                 <p style={infoTextStyle}>Send a WhatsApp message</p>
@@ -159,6 +159,12 @@ const Contact = () => {
                   <FaMapMarkerAlt />
                 </a>
                 <p style={infoTextStyle}>Alajo High Street, Accra, Ghana</p>
+              </div>
+              <div style={infoItemStyle}>
+                <a href="https://github.com/felix-atoma" target="_blank" rel="noopener noreferrer" style={iconStyle}>
+                  <FaGithub />
+                </a>
+                <p style={infoTextStyle}>github.com/felix-atoma</p>
               </div>
             </div>
           </div>
