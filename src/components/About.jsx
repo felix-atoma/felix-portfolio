@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import profileImage from '../assets/Image1.jpg';
+import profileImage from '../assets/1W7A3821.jpg';
 const cvFile = '/Atoma.docx';
 
 const skills = [

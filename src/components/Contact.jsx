@@ -155,7 +155,7 @@ const Contact = () => {
                 <p style={infoTextStyle}>Send a WhatsApp message</p>
               </div>
               <div style={infoItemStyle}>
-                <a href="https://www.google.com/maps?q=Alajo+High+Street,+Accra,+Ghana" target="_blank" rel="noopener noreferrer" style={iconStyle}>
+                <a href="https://www.google.com/maps?q=Alajo+High+Street,+Accra,+Ghana+GA-023-9807" target="_blank" rel="noopener noreferrer" style={iconStyle}>
                   <FaMapMarkerAlt />
                 </a>
                 <p style={infoTextStyle}>Alajo High Street, Accra, Ghana</p>
