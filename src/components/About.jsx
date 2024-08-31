@@ -23,12 +23,12 @@ const About = () => {
   };
 
   return (
-    <section style={{ display: 'flex', flexDirection: 'row', padding: '24px', gap: '24px', flexWrap: 'wrap' }}>
+    <section style={{ display: 'flex', flexDirection: 'row', padding: '24px', gap: '24px', flexWrap: 'wrap', backgroundColor: '#FFFFFF' }}>
       {/* Image Section */}
       <div style={{ flex: '1', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <img
           src={profileImage}
-          alt="Profile of Felix Atom"
+          alt="Profile of Felix Atoma"
           style={{ width: '100%', maxWidth: '400px', height: 'auto', objectFit: 'cover' }}
         />
       </div>
@@ -36,8 +36,8 @@ const About = () => {
       {/* Bio and Skills Section */}
       <div style={{ flex: '2', display: 'flex', flexDirection: 'column' }}>
         <div style={{ display: 'grid', gap: '20px' }}>
-          <h1 style={{ fontSize: '32px', fontWeight: 'bold' }}>My Bio</h1>
-          <p style={{ color: '#939393', fontSize: '16px' }}>
+          <h1 style={{ fontSize: '32px', fontWeight: 'bold', color: '#000000' }}>My Bio</h1>
+          <p style={{ color: '#000000', fontSize: '16px' }}>
             With a deep understanding of Tailwind CSS, UI/UX design, JavaScript, Bootstrap, CSS, HTML, Git, and GitHub, I specialize in crafting visually stunning and highly functional web interfaces. My expertise lies in seamlessly integrating design aesthetics with robust front-end development, ensuring that every project not only looks exceptional but also provides an intuitive user experience. I am passionate about leveraging modern web technologies to build responsive, accessible, and user-centric applications that stand out in a competitive digital landscape. My proficiency in these areas allows me to transform ideas into engaging, interactive, and visually appealing web solutions that meet the needs of both users and businesses.
           </p>
         </div>
@@ -52,7 +52,7 @@ const About = () => {
                 <div
                   style={{
                     height: '4px',
-                    backgroundColor: '#96BB7C',
+                    backgroundColor: skill.percentage > 75 ? '#90EE90' : '#FFA500', // Light green or orange based on percentage
                     position: 'absolute',
                     width: `${skill.percentage}%`,
                     borderRadius: '4px'
@@ -74,13 +74,21 @@ const About = () => {
               padding: '8px 16px',
               border: '2px solid',
               borderRadius: '24px',
-              backgroundColor: '#96BB7C',
-              color: '#FFFFFF',
+              backgroundColor: '#90EE90', // Light green
+              color: '#000000',
               cursor: 'pointer',
               border: 'none',
               fontSize: '16px',
               fontWeight: 'bold',
-              transition: 'background-color 0.3s'
+              transition: 'background-color 0.3s, color 0.3s',
+            }}
+            onMouseOver={(e) => {
+              e.currentTarget.style.backgroundColor = '#6DBF4F'; // Darker green on hover
+              e.currentTarget.style.color = '#FFFFFF'; // White text on hover
+            }}
+            onMouseOut={(e) => {
+              e.currentTarget.style.backgroundColor = '#90EE90'; // Light green
+              e.currentTarget.style.color = '#000000'; // Black text
             }}
           >
             Hire Me
@@ -92,13 +100,21 @@ const About = () => {
               padding: '8px 16px',
               border: '2px solid',
               borderRadius: '24px',
-              backgroundColor: '#e0e0e0',
+              backgroundColor: '#FFA500', // Orange
               color: '#000000',
               textDecoration: 'none',
               display: 'inline-block',
               fontSize: '16px',
               fontWeight: 'bold',
-              transition: 'background-color 0.3s'
+              transition: 'background-color 0.3s, color 0.3s',
+            }}
+            onMouseOver={(e) => {
+              e.currentTarget.style.backgroundColor = '#FF8C00'; // Darker orange on hover
+              e.currentTarget.style.color = '#FFFFFF'; // White text on hover
+            }}
+            onMouseOut={(e) => {
+              e.currentTarget.style.backgroundColor = '#FFA500'; // Orange
+              e.currentTarget.style.color = '#000000'; // Black text
             }}
           >
             Download CV

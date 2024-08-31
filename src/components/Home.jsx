@@ -36,13 +36,13 @@ const Home = () => {
                     </div>
 
                     {/* Photo section */}
-                    <div style={{ width: '100%', maxWidth: '48%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                        <div style={{ width: '100%', maxWidth: '450px', maxHeight: '450px', backgroundColor: '#d1d1d1', borderRadius: '50%', overflow: 'hidden' }}>
+                    <div style={{ width: '100%', maxWidth: '50%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                        <div style={{ width: '100%', height: '100%', backgroundColor: '#d1d1d1', borderRadius: '50%', overflow: 'hidden' }}>
                             {/* Replace the src with the path to your photo */}
                             <img
-                                src='src/assets/Image1.jpg'
+                                src='src/assets/1W7A3821.jpg'
                                 alt='Felix Atoma'
-                                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
                             />
                         </div>
                     </div>
