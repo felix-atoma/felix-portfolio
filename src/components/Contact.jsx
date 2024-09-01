@@ -7,6 +7,7 @@ const Contact = () => {
     lastName: '',
     email: '',
     phone: '',
+    subject: '', // Added subject field
     message: ''
   });
   const [submitted, setSubmitted] = useState(false);
@@ -18,13 +19,14 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission
+    // Handle form submission (e.g., send data to an API)
+    console.log(formData); // For demonstration purposes, you can see the formData in the console
     setSubmitted(true);
     // Reset form
-    setFormData({ firstName: '', lastName: '', email: '', phone: '', message: '' });
+    setFormData({ firstName: '', lastName: '', email: '', phone: '', subject: '', message: '' });
   };
 
-  // Inline styles
+  // Inline styles (unchanged)
   const sectionStyle = {
     backgroundColor: '#ffffff',
     padding: '3rem 1.5rem',
@@ -71,7 +73,7 @@ const Contact = () => {
 
   const iconStyle = {
     fontSize: '1.5rem',
-    color: '#FF6F00', 
+    color: '#FF6F00',
     marginRight: '1rem',
     cursor: 'pointer',
   };
@@ -224,6 +226,18 @@ const Contact = () => {
                   />
                 </div>
                 <div>
+                  <label htmlFor="subject" style={{ display: 'block', color: '#4a5568', marginBottom: '0.5rem' }}>Subject</label>
+                  <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    required
+                    style={inputStyle}
+                  />
+                </div>
+                <div>
                   <label htmlFor="message" style={{ display: 'block', color: '#4a5568', marginBottom: '0.5rem' }}>Message</label>
                   <textarea
                     id="message"
@@ -231,15 +245,14 @@ const Contact = () => {
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    rows="4"
-                    style={inputStyle}
+                    style={{ ...inputStyle, height: '150px' }}
                   />
                 </div>
                 <button
                   type="submit"
                   style={buttonStyle}
-                  onMouseOver={(e) => e.currentTarget.style.backgroundColor = buttonHoverStyle.backgroundColor}
-                  onMouseOut={(e) => e.currentTarget.style.backgroundColor = buttonStyle.backgroundColor}
+                  onMouseEnter={(e) => e.target.style.backgroundColor = buttonHoverStyle.backgroundColor}
+                  onMouseLeave={(e) => e.target.style.backgroundColor = buttonStyle.backgroundColor}
                 >
                   Send Message
                 </button>
