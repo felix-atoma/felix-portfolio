@@ -6,6 +6,7 @@ const Contact = () => {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
+    phone: '',
     email: '',
     subject: '',
     message: ''
@@ -21,15 +22,15 @@ const Contact = () => {
     e.preventDefault();
 
     // EmailJS integration
-    const serviceID = 'your_service_id';
-    const templateID = 'your_template_id';
-    const userID = 'your_user_id';
+    const serviceID = 'service_c0z7aac';  // Your Service ID
+    const templateID = 'template_7obdcvs';  // Your Template ID
+    const userID = 'Q2qNbFmnIySzNTGul';  // Your Public Key (User ID)
 
     emailjs.sendForm(serviceID, templateID, e.target, userID)
       .then((response) => {
         console.log('SUCCESS!', response.status, response.text);
         setSubmitted(true);
-        setFormData({ firstName: '', lastName: '', email: '', subject: '', message: '' });
+        setFormData({ firstName: '', lastName: '', phone: '', email: '', subject: '', message: '' });
       }, (err) => {
         console.log('FAILED...', err);
       });
@@ -38,12 +39,15 @@ const Contact = () => {
   // Styles
   const sectionStyle = {
     backgroundColor: '#ffffff',
-    padding: '3rem 1.5rem',
+    padding: '2rem 1rem',
   };
 
   const containerStyle = {
-    maxWidth: '1200px',
+    maxWidth: '1000px',
     margin: '0 auto',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '2.5rem',
   };
 
   const headerStyle = {
@@ -51,34 +55,35 @@ const Contact = () => {
     fontWeight: '700',
     textAlign: 'center',
     color: '#333333',
-    marginBottom: '2.5rem',
+    marginBottom: '2rem',
   };
 
   const zigzagContainerStyle = {
     display: 'flex',
     flexDirection: 'column',
-    gap: '3rem',
+    gap: '2rem',
   };
 
   const zigzagItemStyle = {
     display: 'flex',
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    gap: '2rem',
+    gap: '1.5rem',
   };
 
   const infoContainerStyle = {
     flex: 1,
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '1rem',
+    backgroundColor: '#E7F4E4',
+    padding: '1.5rem',
+    borderRadius: '0.5rem',
   };
 
   const formContainerStyle = {
     flex: 1,
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '1.5rem',
+    backgroundColor: '#FFE8CC',
+    padding: '1.5rem',
+    borderRadius: '0.5rem',
   };
 
   const imageContainerStyle = {
@@ -100,12 +105,13 @@ const Contact = () => {
     fontSize: '1.5rem',
     fontWeight: '700',
     color: '#96BB7C',
+    marginBottom: '1rem',
   };
 
   const formStyle = {
     display: 'flex',
     flexDirection: 'column',
-    gap: '1rem',
+    gap: '0.75rem',
   };
 
   const inputStyle = {
@@ -151,7 +157,7 @@ const Contact = () => {
         <h1 style={headerStyle}>Contact Me</h1>
 
         <div style={zigzagContainerStyle}>
-          {/* First Zigzag Item: Contact Info Left, Map Right */}
+          {/* First Zigzag Item: Contact Info and Image */}
           <div style={zigzagItemStyle}>
             <div style={infoContainerStyle}>
               <h2 style={infoHeaderStyle}>Contact Information</h2>
@@ -170,19 +176,11 @@ const Contact = () => {
               </a>
             </div>
             <div style={imageContainerStyle}>
-              {/* Embed Google Map */}
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3169.1675973359746!2d-0.2170306845598326!3d5.560344034874077!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdf9c3a78c33f4d%3A0x5a73683e240c1d0e!2sAlajo%20High%20Street%2C%20Accra!5e0!3m2!1sen!2sgh!4v1631204798055!5m2!1sen!2sgh"
-                width="100%"
-                height="250"
-                style={{ border: '0', borderRadius: '0.5rem' }}
-                allowFullScreen=""
-                loading="lazy"
-              ></iframe>
+              <img src="src/assets/signing.png" alt="Contact Info Image" style={imageStyle} />
             </div>
           </div>
 
-          {/* Second Zigzag Item: Image Left, Form Right */}
+          {/* Second Zigzag Item: Form and Image */}
           <div style={{ ...zigzagItemStyle, flexDirection: 'row-reverse' }}>
             <div style={formContainerStyle}>
               <h2 style={infoHeaderStyle}>Get in Touch</h2>
@@ -204,6 +202,15 @@ const Contact = () => {
                     name="lastName"
                     placeholder="Last Name"
                     value={formData.lastName}
+                    onChange={handleChange}
+                    required
+                    style={inputStyle}
+                  />
+                  <input
+                    type="text"
+                    name="phone"
+                    placeholder="Phone Number"
+                    value={formData.phone}
                     onChange={handleChange}
                     required
                     style={inputStyle}
@@ -232,7 +239,7 @@ const Contact = () => {
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    style={{ ...inputStyle, height: '120px' }}
+                    style={{ ...inputStyle, height: '100px' }}
                   />
                   <button
                     type="submit"
