@@ -38,7 +38,15 @@ const About = () => {
         <div style={{ display: 'grid', gap: '20px' }}>
           <h1 style={{ fontSize: '32px', fontWeight: 'bold', color: '#000000' }}>My Bio</h1>
           <p style={{ color: '#000000', fontSize: '16px' }}>
-            With a deep understanding of Tailwind CSS, UI/UX design, JavaScript, Bootstrap, CSS, HTML, Git, and GitHub, I specialize in crafting visually stunning and highly functional web interfaces. My expertise lies in seamlessly integrating design aesthetics with robust front-end development, ensuring that every project not only looks exceptional but also provides an intuitive user experience. I am passionate about leveraging modern web technologies to build responsive, accessible, and user-centric applications that stand out in a competitive digital landscape. My proficiency in these areas allows me to transform ideas into engaging, interactive, and visually appealing web solutions that meet the needs of both users and businesses.
+            With a deep understanding of Tailwind CSS, UI/UX design, JavaScript, Bootstrap, CSS, HTML, Git, and GitHub, 
+            I specialize in crafting visually
+             stunning and highly functional web interfaces. My expertise lies in seamlessly 
+            integrating design aesthetics with robust front-end development, ensuring that every project 
+            not only looks exceptional but also provides an intuitive user experience. I am passionate about
+             leveraging modern web technologies to build responsive, accessible, and user-centric applications 
+             that stand out in a competitive digital landscape. My proficiency in these areas allows me to transform 
+             ideas into engaging, interactive, and visually appealing web solutions that meet the needs of both users 
+             aand businesses.
           </p>
         </div>
 

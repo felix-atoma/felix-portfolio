@@ -38,9 +38,9 @@ const Home = () => {
                     {/* Photo section */}
                     <div style={{ width: '100%', maxWidth: '50%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <div style={{ width: '100%', height: '100%', backgroundColor: '#d1d1d1', borderRadius: '50%', overflow: 'hidden' }}>
-                            {/* Replace the src with the path to your photo */}
+                            {/* Image from the public folder */}
                             <img
-                                src='src/assets/1W7A3821.jpg'
+                                src='/1W7A3821.jpg'
                                 alt='Felix Atoma'
                                 style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
                             />
