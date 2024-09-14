@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaWhatsapp, FaGithub } from 'react-icons/fa';
 import emailjs from 'emailjs-com';
+import signingImage from '../assets/signing.png'; // Update path as necessary
+import landingBgImage from '../assets/landingBg.png'; // Update path as necessary
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -21,7 +23,6 @@ const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // EmailJS integration
     const serviceID = 'service_c0z7aac';  // Your Service ID
     const templateID = 'template_7obdcvs';  // Your Template ID
     const userID = 'Q2qNbFmnIySzNTGul';  // Your Public Key (User ID)
@@ -176,7 +177,7 @@ const Contact = () => {
               </a>
             </div>
             <div style={imageContainerStyle}>
-              <img src="src/assets/signing.png" alt="Contact Info Image" style={imageStyle} />
+              <img src={signingImage} alt="Contact Info Image" style={imageStyle} />
             </div>
           </div>
 
@@ -253,7 +254,7 @@ const Contact = () => {
               )}
             </div>
             <div style={imageContainerStyle}>
-              <img src="/src/assets/landingBg.png" alt="Contact Form Image" style={imageStyle} />
+              <img src={landingBgImage} alt="Contact Form Image" style={imageStyle} />
             </div>
           </div>
         </div>
