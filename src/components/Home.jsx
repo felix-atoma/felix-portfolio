@@ -1,5 +1,6 @@
 import React from 'react';
 import { TypeAnimation } from 'react-type-animation';
+import profileImage from '../assets/1W7A3821.jpg'; // adjust the path based on your file structure
 
 const Home = () => {
     return (
@@ -38,9 +39,9 @@ const Home = () => {
                     {/* Photo section */}
                     <div style={{ width: '100%', maxWidth: '50%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <div style={{ width: '100%', height: '100%', backgroundColor: '#d1d1d1', borderRadius: '50%', overflow: 'hidden' }}>
-                            {/* Image from the public folder */}
+                            {/* Use imported image */}
                             <img
-                                src='/1W7A3821.jpg'
+                                src={profileImage}
                                 alt='Felix Atoma'
                                 style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
                             />
