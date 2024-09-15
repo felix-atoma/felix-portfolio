@@ -1,116 +1,166 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const Blog = ({ posts }) => {
-  // Define inline styles
-  const sectionStyle = { 
-    padding: '40px',
-    textAlign: 'center',
-    backgroundColor: '#F7F7F7' // Light background for the section
+  // Define inline styles for blog container and cards
+  const gridStyle = {
+    display: 'grid',
+    gridTemplateColumns: '1fr',
+    gap: '32px',
+    padding: '20px',
   };
-  const titleStyle = { 
-    fontSize: '2.5rem', 
-    fontWeight: '700', 
-    color: '#333333', 
-    marginBottom: '40px',
-    textTransform: 'uppercase', // Uppercase title for emphasis
-    letterSpacing: '1px'
-  };
-  const articleStyle = {
-    backgroundColor: 'white',
-    borderRadius: '12px', // Rounded corners for a modern look
-    boxShadow: '0px 6px 12px rgba(0, 0, 0, 0.1)',
+
+  const cardStyle = {
+    backgroundColor: '#fff', // White background
+    border: '1px solid #E2E8F0',
+    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+    borderRadius: '8px',
     padding: '24px',
-    transition: 'background-color 0.3s, transform 0.3s',
-    cursor: 'pointer',
-    margin: '0 auto',
-    maxWidth: '800px',
-    ':hover': {
-      backgroundColor: '#FAFAFA',
-      transform: 'scale(1.03)'
-    }
-  };
-  const titleTextStyle = { 
-    fontSize: '2rem', 
-    fontWeight: '700', 
-    marginBottom: '16px', 
-    color: '#4A4A4A',
-    lineHeight: '1.4' // Improved readability
-  };
-  const excerptStyle = { 
-    color: '#555555', 
-    marginBottom: '16px',
-    fontSize: '1.1rem',
-    lineHeight: '1.6' // Improved readability
-  };
-  const footerStyle = { 
-    fontSize: '0.9rem', 
-    color: '#777777',
-    marginTop: '12px'
-  };
-  const contentStyle = { 
-    marginTop: '20px', 
-    lineHeight: '1.8', 
-    textAlign: 'left', // Align content to the left for readability
-    fontSize: '1.1rem'
-  };
-  const backButtonStyle = {
-    marginTop: '20px',
-    padding: '12px 24px',
-    backgroundColor: '#71B34A',
-    color: '#FFFFFF',
-    border: 'none',
-    borderRadius: '5px',
-    cursor: 'pointer',
-    fontSize: '1.1rem',
-    fontWeight: '500',
-    transition: 'background-color 0.3s, transform 0.3s',
-    ':hover': {
-      backgroundColor: '#5a9a3e',
-      transform: 'scale(1.05)'
-    }
+    marginBottom: '20px',
+    transition: 'transform 0.3s ease, box-shadow 0.3s ease',
   };
 
-  const [selectedPost, setSelectedPost] = useState(null);
+  const hoverStyle = {
+    transform: 'scale(1.05)',
+    boxShadow: '0 8px 16px rgba(0, 0, 0, 0.2)',
+  };
 
-  const handleArticleClick = (post) => {
-    setSelectedPost(post);
+  const titleStyle = {
+    fontSize: '24px',
+    fontWeight: 'bold',
+    color: '#2D3748', // Dark gray
+  };
+
+  const dateStyle = {
+    color: '#718096', // Lighter gray
+    fontSize: '14px',
+    marginBottom: '10px',
+  };
+
+  const excerptStyle = {
+    color: '#4A5568', // Medium gray
+  };
+
+  const cardContentStyle = {
+    backgroundColor: '#F7FAFC', // Light gray background for card content
+    border: '2px solid #71B34A', // Light green border
+    borderRadius: '8px',
+    padding: '16px',
+    marginBottom: '10px',
+    transition: 'background-color 0.3s ease',
+  };
+
+  const hoverCardContentStyle = {
+    backgroundColor: '#F7931E', // Orange background on hover
+    color: '#FFFFFF', // White text on hover
+  };
+
+  const mainTitleStyle = {
+    fontSize: '32px',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: '40px',
+    color: '#2D3748', // Dark gray for the main title
   };
 
   return (
-    <section style={sectionStyle}>
-      <h1 style={titleStyle}>Blog</h1>
-      
-      {selectedPost ? (
-        <article style={articleStyle}>
-          <h2 style={titleTextStyle}>{selectedPost.title}</h2>
-          <div style={contentStyle}>{selectedPost.content}</div>
-          <button 
-            onClick={() => setSelectedPost(null)}
-            style={backButtonStyle}
+    <div style={{ padding: '40px' }}>
+      {/* Main Title */}
+      <h1 style={mainTitleStyle}>My Blog</h1>
+
+      {/* Blog posts grid */}
+      <div style={gridStyle}>
+        {posts.map((post) => (
+          <div
+            key={post.id}
+            style={cardStyle}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = hoverStyle.transform;
+              e.currentTarget.style.boxShadow = hoverStyle.boxShadow;
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = '';
+              e.currentTarget.style.boxShadow = '';
+            }}
           >
-            Back to Blog List
-          </button>
-        </article>
-      ) : (
-        <div style={{ display: 'grid', gap: '40px', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', justifyContent: 'center' }}>
-          {posts.map((post) => (
-            <article 
-              key={post.id} 
-              style={articleStyle}
-              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FAFAFA'}
-              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'white'}
-              onClick={() => handleArticleClick(post)}
-            >
-              <h2 style={titleTextStyle}>{post.title}</h2>
-              <p style={excerptStyle}>{post.excerpt}</p>
-              <div style={footerStyle}>
-                <span>By {post.author}</span> | <span>{new Date(post.date).toLocaleDateString()}</span>
+            <h2 style={titleStyle}>{post.title}</h2>
+            <p style={dateStyle}>
+              {post.date} by {post.author}
+            </p>
+            <p style={excerptStyle}>{post.excerpt}</p>
+
+            {/* Display content in hoverable cards */}
+            <div>
+              {/* First Card: Vite */}
+              <div
+                style={cardContentStyle}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = hoverCardContentStyle.backgroundColor;
+                  e.currentTarget.style.color = hoverCardContentStyle.color;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = cardContentStyle.backgroundColor;
+                  e.currentTarget.style.color = '';
+                }}
+              >
+                <h3 style={{ fontSize: '20px', fontWeight: 'bold' }}>Vite: Lightning-Fast Builds</h3>
+                <p>
+                  Vite is a next-generation build tool that leverages native ES modules for faster hot module replacement (HMR).
+                </p>
+                <ul>
+                  <li>Fast Development</li>
+                  <li>Optimized Production Builds</li>
+                  <li>Simplicity</li>
+                </ul>
               </div>
-            </article>
-          ))}
-        </div>
-      )}
-    </section>
+              {/* Second Card: React */}
+              <div
+                style={cardContentStyle}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = hoverCardContentStyle.backgroundColor;
+                  e.currentTarget.style.color = hoverCardContentStyle.color;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = cardContentStyle.backgroundColor;
+                  e.currentTarget.style.color = '';
+                }}
+              >
+                <h3 style={{ fontSize: '20px', fontWeight: 'bold' }}>React: Building Dynamic User Interfaces</h3>
+                <p>
+                  React’s component-based architecture allows for modular and scalable web applications.
+                </p>
+                <ul>
+                  <li>Component Reusability</li>
+                  <li>State Management with Hooks</li>
+                  <li>Rich Ecosystem</li>
+                </ul>
+              </div>
+              {/* Third Card: Tailwind CSS */}
+              <div
+                style={cardContentStyle}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = hoverCardContentStyle.backgroundColor;
+                  e.currentTarget.style.color = hoverCardContentStyle.color;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = cardContentStyle.backgroundColor;
+                  e.currentTarget.style.color = '';
+                }}
+              >
+                <h3 style={{ fontSize: '20px', fontWeight: 'bold' }}>Tailwind CSS: Styling with Ease</h3>
+                <p>
+                  Tailwind CSS offers a utility-first approach to styling, making it fast and easy to implement design changes.
+                </p>
+                <ul>
+                  <li>Utility-First Styling</li>
+                  <li>Customizable</li>
+                  <li>Responsive Design</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 };
 
