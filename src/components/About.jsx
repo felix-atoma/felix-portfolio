@@ -1,19 +1,21 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import profileImage from '../assets/1W7A3821.jpg';
-const cvFile = '/new.pdf';
+const cvFile = '/Felix_Atoma_CV_Cleaned';
 
 const skills = [
   { name: 'Tailwind CSS', percentage: 90 },
+  { name: 'React Native Expo', percentage: 85 }, // Added React Native Expo
+  { name: 'TypeScript', percentage: 65 },        // Added TypeScript at 65%
   { name: 'UI/UX Design', percentage: 85 },
-  { name: 'JavaScript', percentage: 40 },
+  { name: 'JavaScript', percentage: 70 },        // Updated JavaScript to 70%
   { name: 'Bootstrap', percentage: 92 },
   { name: 'CSS', percentage: 97 },
   { name: 'HTML', percentage: 98 },
   { name: 'Git', percentage: 85 },
   { name: 'GitHub', percentage: 80 },
   { name: 'React.js', percentage: 80 },
-  { name: 'Next.js', percentage: 80 }, // Added Next.js
+  { name: 'Next.js', percentage: 80 },
 ];
 
 const About = () => {
