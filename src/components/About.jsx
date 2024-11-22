@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import profileImage from '../assets/1W7A3821.jpg';
-const cvFile = '/Felix_Atoma_CV_Cleaned';
+const cvFile = '/Felix_Atoma_Resume.pdf';
 
 const skills = [
   { name: 'Tailwind CSS', percentage: 90 },
